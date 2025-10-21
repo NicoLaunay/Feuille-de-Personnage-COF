@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script type="text/javascript" src="data/races.json"></script> -->
+    <script type="module" src="./js/races.js"></script>
+    <script type="module" src="./js/script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <title>Fiche personnage</title>
+</head>
+
+<body>
+    <h1>Fiche de personnage</h1>
+    <main>
+
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
+        <!-- PRESENTATION SLIDE -->
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
+        <div class="container slide">
+            <div class="container">
+                <img id="avatar" src="images/picture.webp" alt="avatar">
+                <div id="bars">
+                    <!-- BARRE DE VIE -->
+                    <div>
+                        <div id="life_bar"></div>
+                        <div id="life_points">6/6</div>
+                    </div>
+                    <!-- BARRE DE MANA -->
+                     <div>
+                        <div id="mana_bar"></div>
+                        <div id="mana_points">5/5</div>
+                    </div>
+                </div>
+                <form id="identity">
+                    <div class="form_unit">
+                        <!-- <label for="name">Nom : </label> -->
+                        <input id="name" type="text" name="name" placeholder="Nom du Personnage">
+                    </div>
+                    
+                    <div class="form_unit">
+                        <!-- RACE Selection -->
+                        <label for="race">Race : </label>
+                        <select id="race" name="race">
+                            <option value="halfElf">Demi-elfe</option>
+                            <option value="halfOrc">Demi-orque</option>
+                            <option value="highElf">Elfe, Haut</option>
+                            <option value="woodElf">Elfe, Sylvain</option>
+                            <option value="gnome">Gnome</option>
+                            <option value="halfling">Halfelin</option>
+                            <option value="human">Humain</option>
+                            <option value="dwarf">Nain</option>
+                        </select>
+                        <!-- CLASS Selection -->
+                        <label for="class">Profil : </label>
+                        <select id="class" name="class">
+                            <option value="arquebusier">Arquebusier</option>
+                            <option value="barbarian">Barbare</option>
+                            <option value="bard">Barde</option>
+                            <option value="knight">Chevalier</option>
+                            <option value="druid">Druide</option>
+                            <option value="sorcerer">Ensorceleur</option>
+                            <option value="spellforger">Forgesort</option>
+                            <option value="warrior">Guerrier</option>
+                            <option value="wizard">Magicien</option>
+                            <option value="monk">Moine</option>
+                            <option value="necromancer">Nécromancien</option>
+                            <option value="priest">Prêtre</option>
+                            <option value="ranger">Rôdeur</option>
+                            <option value="thief">Voleur</option>
+                        </select>
+                    </div>
+                    <!-- LEVEL input -->
+                    <div class="form_unit">
+                        <label for="level">Niveau : </label>
+                        <input id="level" type="number" name="level" value=1  min="1" max="25">
+                    </div>
+
+                    
+                    <div class="form_unit">
+                        <!-- SEX selection -->
+                        <label for="sex">Sexe : </label>
+                        <!-- <input id="sex" type="text" name="sex" placeholder="Inconnu"> -->
+                        <select id="sex" name="sex">
+                            <option value="unknown">Inconnu</option>
+                            <option value="woman">Femme</option>
+                            <option value="man">Homme</option>
+                            <option value="undetermined">Indéterminé</option>
+                            <option value="sexless">Asexué</option>
+                        </select>
+                        <!-- AGE input -->
+                        <label for="age">Âge : </label>
+                        <input id="age" type="number" name="age" value="20" min="20" max="150">
+                    </div>
+
+                    <div class="form_unit">
+                        <label for="height">Taille (en m) : </label>
+                        <input id="height" type="number" name="height" value="1.70" step="0.01" min="1.50" max="1.90">
+
+                        <label for="weight">Poids (en kg) : </label>
+                        <input id="weight" type="number" name="weight" value="60" step="1" min="40" max="80">
+                    </div>
+                    
+                    <div class="form_unit">
+                        <label for="player_name">Nom du Joueur : </label>
+                        <input id="player_name" type="text" name="player_name" placeholder="ex: Nico">
+                    </div>
+                </form>
+
+                <div id="racial_capacity">
+                    <label for="capacity">Capacité raciale</label>
+                    <!-- <textarea id="capacity" name="capacity"></textarea> -->
+                    <p id="capacity">Le demi-elfe choisit l'une des deux capacités suivantes: <br>
+                                        Instinct de survie (humain): <br>
+                                        lorsqu'une attaque devrait amener le PJ à 0 PV, les DM qu'elle inflige sont divisés par 2 (minimum 1)<br>
+                                        Lumière des étoiles (elfe): <br>
+                                        Pour un elfe, l'obscurité de la nuit sous la lumière des étoiles n'est que de la pénombre,
+                                        où seuls les petits détails lui échappent</p>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <table id="characteristics">
+                    <thead>
+                        <tr>
+                            <td>Carac.</td>
+                            <td></td>
+                            <td>Val.</td>
+                            <td>Mod.</td>
+                            <td>Test</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="STRENGTH">
+                            <td>FOR</td>
+                            <td><input type="number" name="str" value="0" min="-6" max="8"></td>
+                            <td class="val">10</td>
+                            <td class="mod">0</td>
+                            <td></td>
+                        </tr>
+                        <tr id="DEXTERITY">
+                            <td>DEX</td>
+                            <td><input class="pts" type="number" name="dex" value="0" min="-6" max="8"></td>
+                            <td class="val">10</td>
+                            <td class="mod">0</td>
+                            <td></td>
+                        </tr>
+                        <tr id="CONSTITUTION">
+                            <td>CON</td>
+                            <td><input class="pts" type="number" name="con" value="0" min="-6" max="8"></td>
+                            <td class="val">8</td>
+                            <td class="mod">-1</td>
+                            <td></td>
+                        </tr>
+                        <tr id="INTELLIGENCE">
+                            <td>INT</td>
+                            <td><input class="pts" type="number" name="int" value="0" min="-6" max="8"></td>
+                            <td class="val">10</td>
+                            <td class="mod">0</td>
+                            <td></td>
+                        </tr>
+                        <tr id="WISDOM">
+                            <td>SAG</td>
+                            <td><input class="pts" type="number" name="wis" value="0" min="-6" max="8"></td>
+                            <td class="val">12</td>
+                            <td class="mod">+1</td>
+                            <td></td>
+                        </tr>
+                        <tr id="CHARISMA">
+                            <td>CHA</td>
+                            <td><input class="pts" type="number" name="cha" value="0" min="-6" max="8"></td>
+                            <td class="val">10</td>
+                            <td class="mod">0</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="miscValues">
+                    <thead>
+                        <tr>
+                            <td>Init</td>
+                            <td>DEF</td>
+                            <td>Dé de vie</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="initiative">
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                <span>10</span>
+                            </td>
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                blabla
+                            </td>
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                blabla
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="attackValues">
+                    <thead>
+                        <tr>
+                            <td>Type d'attaque</td>
+                            <td>Test</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="atk_melee">
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                Contact
+                            </td>
+                            <td class="mod">
+                                +2
+                            </td>
+                        </tr>
+                        <tr id="atk_range">
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                Distance
+                            </td>
+                            <td class="mod">
+                                +2
+                            </td>
+                        </tr>
+                        <tr id="atk_magic">
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                Magique
+                            </td>
+                            <td class="mod">
+                                +2
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="miscBars">
+                    <thead>
+                        <tr>
+                            <td>PR</td>
+                            <td>PC</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                5/5
+                            </td>
+                            <td>
+                                <img class="icon" src="images/icon_test.png" alt="">
+                                5/5
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="container">
+                    <img class="icon" src="images/icon_test.png" alt="">
+                    <label for="inventory">Inventaire</label>
+                    <textarea name="inventory" id="inventory"></textarea>
+                </div>
+
+                <div class="container">
+                    <img class="icon" src="images/icon_test.png" alt="">
+                    <label for="notes">Notes</label>
+                    <textarea name="notes" id="notes"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
+        <!-- EQUIPEMENT SLIDE -->
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
+        <div class="container slide">
+            <div id="equipment">
+                <h2>Equipement</h2>
+                <div id="weapons">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Equip.</td>
+                                <td>Arme</td>
+                                <td>Test</td>
+                                <td>DM</td>
+                                <td>Special</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><input type="text"></td>
+                                <td>
+                                    <div class="test">
+                                        <img class="icon" src="images/icon_test.png" alt="">
+                                        +1
+                                    </div>
+                                </td>
+                                <td>
+                                    <select name="weaponDM">
+                                        <option value="1d4">1d4</option>
+                                        <option value="1d6">1d6</option>
+                                        <option value="1d8">1d8</option>
+                                        <option value="1d10">1d10</option>
+                                        <option value="1d12">1d12</option>
+                                        <option value="2d6">2d6</option>
+                                        <option value="2d8">2d8</option>
+                                        <option value="2d10">2d10</option>
+                                        <option value="2d12">2d12</option>
+                                    </select>
+                                    <select name="weaponBonus">
+                                        <option value="0"></option>
+                                        <option value="1">+1</option>
+                                        <option value="2">+2</option>
+                                        <option value="3">+3</option>
+                                        <option value="4">+4</option>
+                                        <option value="5">+5</option>
+                                        <option value="6">+6</option>
+
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input class="add" type="button" value="Ajouter">
+                    <input class="delete" type="button" value="Supprimer équipés">
+                </div>
+                <div id="armors">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Equip.</td>
+                                <td>Armure</td>
+                                <td>DEF</td>
+                                <td>Malus</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><input type="text"></td>
+                                <td>+<input type="number" min="1" max="12" value="1"></td>
+                                <td><input type="number" min="-12" max="0" value="1"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input class="add" type="button" value="Ajouter">
+                    <input class="delete" type="button" value="Supprimer équipés">
+                </div>
+
+            </div>
+            
+
+        </div>
+    </main>
+    
+    
+</body>
+</html>

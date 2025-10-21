@@ -1,0 +1,66 @@
+{
+    "halfElf": {
+        "str": 0, "dex": 0, "con": -2, "int": 0, "wis": 2, "cha": 0, 
+        "ageMin": 20, "ageMax": 150,
+        "heightMin": 1.50, "heightMax": 1.90,
+        "weightMin": 40.00, "weightMax": 80.00,
+        "skillName": "Sang mêlé",
+        "skillDescription": "Le demi-elfe choisit l'une des deux capacités suivantes: <br>Instinct de survie (humain): <br>lorsqu'une attaque devrait amener le PJ à 0 PV, les DM qu'elle inflige sont divisés par 2 (minimum 1).<br>Lumière des étoiles (elfe): <br>Pour un elfe, l'obscurité de la nuit sous la lumière des étoiles n'est que de la pénombre, où seuls les petits détails lui échappent"
+    },
+    "halfOrc": {
+        "str": 2, "dex": 0, "con": 0, "int": -2, "wis": 0, "cha": -2, 
+        "ageMin": 15, "ageMax": 60,
+        "heightMin": 1.70, "heightMax": 2.10,
+        "weightMin": 70, "weightMax": 150,
+        "skillName": "Vision dans le noir",
+        "skillDescription": "Dans le noir total, le Demi-orque voit comme dans la pénombre jusqu’à 30 m."
+    },
+    "highElf": {
+        "str": -2, "dex": 0, "con": 0, "int": 0, "wis": 0, "cha": 2, 
+        "ageMin": 80, "ageMax": 450,
+        "heightMin": 1.50, "heightMax": 1.80,
+        "weightMin": 40, "weightMax": 70,
+        "skillName": "Lumière des étoiles",
+        "skillDescription": "Pour un Haut-elfe, l’obscurité de la nuit sous la lumière des étoiles n’est que de la pénombre, où seuls les petits détails lui échappent."
+    },
+    "woodElf": {
+        "str": -2, "dex": 2, "con": 0, "int": 0, "wis": 0, "cha": 0, 
+        "ageMin": 50, "ageMax": 350,
+        "heightMin": 1.40, "heightMax": 1.70,
+        "weightMin": 30.00, "weightMax": 70.00,
+        "skillName": "Lumière des étoiles",
+        "skillDescription": "Pour un Elfe sylvain, l’obscurité de la nuit sous la lumière des étoiles n’est que de la pénombre, où seuls les petits détails lui échappent."
+    },
+    "gnome": {
+        "str": -2, "dex": 0, "con": 0, "int": 2, "wis": 0, "cha": 0, 
+        "ageMin": 40, "ageMax": 250,
+        "heightMin": 1.0, "heightMax": 1.20,
+        "weightMin": 30.00, "weightMax": 50.00,
+        "skillName": "Don étrange",
+        "skillDescription": "le gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires.<br>Le joueur choisit une des deux options suivantes : <br>Soit son personnage gagne un bonus de +5 sur tous les tests d’INT ;<br>Soit il choisit une capacité de rang 1 d’Ensorceleur. Il peut utiliser ce sort sans pénalité avec une armure allant jusqu’à la chemise de maille."
+    },
+    "halfling": {
+        "str": -2, "dex": 2, "con": 0, "int": 0, "wis": 0, "cha": 0, 
+        "ageMin": 20, "ageMax": 150,
+        "heightMin": 0.8, "heightMax": 1,
+        "weightMin": 20, "weightMax": 30,
+        "skillName": "Petite taille",
+        "skillDescription": " le Halfelin obtient un bonus de +1 en DEF et de +2 à tous les tests de discrétion. En revanche, un Halfelin peut seulement utiliser à une main une arme dont les DM sont au maximum égaux à 1d6 (épée courte, masse, etc.). Il lui faut utiliser les 2 mains pour les armes qui infligent 1d8 à 1d10 de DM (épée longue). Enfin il lui est interdit d’utiliser les armes qui infligent plus de 1d10 DM."
+    },
+    "human": {
+        "str": 0, "dex": 0, "con": 0, "int": 0, "wis": 0, "cha": 0, 
+        "ageMin": 18, "ageMax": 100,
+        "heightMin": 1.50, "heightMax": 2.00,
+        "weightMin": 40.00, "weightMax": 120.00,
+        "skillName": "Instinct de survie",
+        "skillDescription": "Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1)."
+    },
+    "dwarf": {
+        "str": 0, "dex": -2, "con": 2, "int": 0, "wis": 0, "cha": 0, 
+        "ageMin": 40, "ageMax": 250,
+        "heightMin": 1.15, "heightMax": 1.35,
+        "weightMin": 50.00, "weightMax": 100.00,
+        "skillName": "Vision dans le noir",
+        "skillDescription": "Dans le noir total, le Nain voit comme dans la pénombre jusqu’à 30 m."
+    }
+}
