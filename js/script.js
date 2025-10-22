@@ -5,7 +5,7 @@ import { RACES } from "./races.js"
 // ----------------------------------------------------------------------------------------------------------------------
 
 function calcModCharac(charac) {
-// Calculate the 
+// Updates the specified CHARAC modifier
     let points = document.querySelector(`#${charac} input`).value
     let valueElmt = document.querySelector(`#${charac} .val`)
     let modElmt = document.querySelector(`#${charac} .mod`)
@@ -22,6 +22,11 @@ function calcModCharac(charac) {
         modElmt.innerHTML = modValue
     }
 
+    //if current characteristic is STR, melee DM are modified
+    if (charac == "STRENGTH") {
+        // melee ATK
+        calcAtk("atk_melee")
+    }
     //if current characteristic is DEX, initiative, DISTANCE ATK and DEF are modified
     if (charac == "DEXTERITY") {
         // INIT
@@ -30,11 +35,51 @@ function calcModCharac(charac) {
         // DEF
         calcDef()
         // Distance ATK
-        // To Do
+        calcAtk("atk_range")
+    }
+    //if current characteristic is INT, magic DM are modified
+    if (charac == "INTELLIGENCE") {
+        // magic ATK
+        calcAtk("atk_magic")
     }
 }
 
+function calcAtk(atkType1, atkType2=false, atkType3=false) {
+// Updates the selected ATK values
+    let level = document.getElementById("level").value
+    // console.log(atkType1, atkType2, atkType3)
+
+    for (let atkType of [atkType1, atkType2, atkType3]) {
+        // console.log(atkType)
+        if (atkType) {
+            if (atkType == "atk_melee") {
+                var modCharac = Number(document.querySelector("#STRENGTH .mod").innerHTML)
+            } else if (atkType == "atk_range") {
+                var modCharac = Number(document.querySelector("#DEXTERITY .mod").innerHTML)
+            } else if (atkType == "atk_magic") {
+                var modCharac = Number(document.querySelector("#INTELLIGENCE .mod").innerHTML)
+            }
+
+            var weaponMod = 0
+            let weaponTbody = document.querySelector("#weapons tbody")
+
+            for (let row of weaponTbody.rows) {
+                let isChecked = row.querySelector("tr td:first-child input").checked
+                let weaponType = document.getElementById("weaponType").value
+                if (isChecked && weaponType==atkType) {
+                    weaponMod = weaponMod + Number(row.querySelector(".mod input").value)
+                    // console.log(weaponMod)
+                }
+            }
+            let atkMod = Number(level) + Number(weaponMod) + Number(modCharac)
+            document.querySelector(`#${atkType} .mod`).innerHTML = (atkMod > 0) ? `+${atkMod}` : atkMod
+        }
+    }
+    
+}
+
 function calcDef() {
+// Updates the DEF modifier
     let dexMod = document.querySelector("#DEXTERITY .mod").innerHTML
     // console.log(dexMod)
     dexMod = Number(dexMod)
@@ -83,11 +128,11 @@ function addTableLine(tableElmt) {
 }
 
 function deleteTableLine(tableElmt) {
-// Deletes the table lines where the first cell contains a checked checkbox
-    let body = tableElmt.querySelector("tbody")
-    for (let row of body.rows) {
+// Deletes the table lines where the first cell contains a unchecked checkbox
+    let tbody = tableElmt.querySelector("tbody")
+    for (let row of tbody.rows) {
         let isChecked = row.querySelector("tr td:first-child input").checked
-        if ((!isChecked) && (body.rows.length > 1)) {
+        if ((!isChecked) && (tbody.rows.length > 1)) {
             row.remove()
         }
     }
@@ -99,10 +144,11 @@ function deleteTableLine(tableElmt) {
 // ----------------------------------------------------------------------------------------------------------------------
 
 
-// // GETTING THE LEVEL VALUE
-// inputLevel = document.getElementById("level")
-// inputLevel.addEventListener("click", )
-// inputLevel.addEventListener("keyup", )
+// LISTENING TO CHANGES IN LEVEL
+var levelElmt = document.getElementById("level")
+levelElmt.addEventListener("change", () => {
+    calcAtk("atk_melee", "atk_range", "atk_magic")
+})
 
 //LISTENING TO CHANGES IN RACE
 var inputRace = document.getElementById("race")
@@ -139,7 +185,10 @@ charismaPts.addEventListener("change", () => calcModCharac("CHARISMA"));
 // LISTENING TO THE EQUIPMENT TABLES
 var weaponTable = document.querySelector("#weapons table")
 var armorTable = document.querySelector("#armors table")
-weaponTable.addEventListener("change", () => calcDef())
+weaponTable.addEventListener("change", () => {
+    calcDef()
+    calcAtk("atk_melee", "atk_range", "atk_magic")
+})
 armorTable.addEventListener("change", () => calcDef())
 
 // LISTENING TO THE EQUIPMENT BUTTONS

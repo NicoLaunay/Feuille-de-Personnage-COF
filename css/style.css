@@ -105,14 +105,23 @@ input[type="number"] {
 
 /* EQUIPMENT */
 /* ----------------------------------------------------------------------------------------------------------- */
+#armors {
+    margin-top: 20px;
+}
+#weaponType {
+    width: 40px;
+}
 #equipment tbody td:first-child {
     text-align: center;
     width: 20px;
 }
-#equipment tbody td:nth-child(2) {
-    width: 140px;
-}
 #equipment input[type="text"] {
     width: 95%;
+}
+#weapons tbody td:nth-child(3) {
+    width: 140px;
+}
+#armors tbody td:nth-child(2) {
+    width: 140px;
 }
 /* ----------------------------------------------------------------------------------------------------------- */

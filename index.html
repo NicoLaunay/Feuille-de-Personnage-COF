@@ -121,7 +121,9 @@
             </div>
 
             <div class="container">
-
+                <!-- ------------------------------------------------------------------------------------------------------ -->
+                <!-- CHARACTERISTICS TABLE-->
+                <!-- ------------------------------------------------------------------------------------------------------ -->
                 <table id="characteristics">
                     <thead>
                         <tr>
@@ -177,6 +179,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <!-- ------------------------------------------------------------------------------------------------------ -->
 
                 <table id="miscValues">
                     <thead>
@@ -277,6 +280,7 @@
                 </div>
             </div>
         </div>
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
 
 
         <!-- -------------------------------------------------------------------------------------------------------------- -->
@@ -285,11 +289,14 @@
         <div class="container slide">
             <div id="equipment">
                 <h2>Equipement</h2>
+                <!-- ------------------------------------------------------------------------------------------------------ -->
+                <!-- WEAPONS -->
                 <div id="weapons">
                     <table>
                         <thead>
                             <tr>
                                 <td>Equip.</td>
+                                <td>type</td>
                                 <td>Arme</td>
                                 <td>Test</td>
                                 <td>DM</td>
@@ -299,6 +306,13 @@
                         <tbody>
                             <tr>
                                 <td><input type="checkbox" checked></td>
+                                <td>
+                                    <select id="weaponType">
+                                        <option value="atk_melee">M</option>
+                                        <option value="atk_range">R</option>
+                                        <option value="atk_magic">@</option>
+                                    </select>
+                                </td>
                                 <td><input type="text" value="Epée longue"></td>
                                 <td>
                                     <div class="test mod">
@@ -328,6 +342,8 @@
                     <input class="add" type="button" value="Ajouter">
                     <input class="delete" type="button" value="Supprimer non équipés">
                 </div>
+                <!-- ------------------------------------------------------------------------------------------------------ -->
+                <!-- ARMOR -->
                 <div id="armors">
                     <table>
                         <thead>
@@ -353,13 +369,12 @@
                     <input class="add" type="button" value="Ajouter">
                     <input class="delete" type="button" value="Supprimer non équipés">
                 </div>
+                <!-- ------------------------------------------------------------------------------------------------------ -->
 
             </div>
-            
-
         </div>
+        <!-- -------------------------------------------------------------------------------------------------------------- -->
+
     </main>
-    
-    
 </body>
 </html>
