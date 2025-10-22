@@ -22,15 +22,33 @@ function calcModCharac(charac) {
         modElmt.innerHTML = modValue
     }
 
-    //if current characteristic is DEX, initiative and DISTANCE ATK are modified
+    //if current characteristic is DEX, initiative, DISTANCE ATK and DEF are modified
     if (charac == "DEXTERITY") {
+        // INIT
         let initElement = document.querySelector("#initiative span")
         initElement.innerHTML = valueElmt.textContent
+        // DEF
+        calcDef()
+        // Distance ATK
+        // To Do
     }
 }
 
-function calcModAtk(atk_type) {
-    let test = 0
+function calcDef() {
+    let dexMod = document.querySelector("#DEXTERITY .mod").innerHTML
+    // console.log(dexMod)
+    dexMod = Number(dexMod)
+    let armorMod = 0
+    let armorTbody = document.querySelector("#armors tbody")
+    for (let row of armorTbody.rows) {
+        let isChecked = row.querySelector("tr td:first-child input").checked
+        if (isChecked) {
+            armorMod = armorMod + Number(row.querySelector(".mod").value)
+        }
+    }
+    let def = document.querySelector("#defense span")
+    // console.log(`dexMod: ${dexMod}, armorMod: ${armorMod}`)
+    def.innerHTML = `+${dexMod + armorMod}`
 }
 
 function setRace(raceMap, ageElmt, heightElmt, weightElmt, capacityElmt, characElmt) {
@@ -60,6 +78,7 @@ function addTableLine(tableElmt) {
     let lastLine = tableElmt.querySelector("tbody tr:last-child")
     let body = tableElmt.querySelector("tbody")
     let clonedLine = lastLine.cloneNode(true)
+    clonedLine.querySelector("tr td:first-child input").checked = false
     body.appendChild(clonedLine)
 }
 
@@ -68,7 +87,7 @@ function deleteTableLine(tableElmt) {
     let body = tableElmt.querySelector("tbody")
     for (let row of body.rows) {
         let isChecked = row.querySelector("tr td:first-child input").checked
-        if ((isChecked) && (body.rows.length > 1)) {
+        if ((!isChecked) && (body.rows.length > 1)) {
             row.remove()
         }
     }
@@ -117,15 +136,19 @@ wisdomPts.addEventListener("change", () => calcModCharac("WISDOM"));
 var charismaPts = document.querySelector("#CHARISMA input")
 charismaPts.addEventListener("change", () => calcModCharac("CHARISMA"));
 
+// LISTENING TO THE EQUIPMENT TABLES
+var weaponTable = document.querySelector("#weapons table")
+var armorTable = document.querySelector("#armors table")
+weaponTable.addEventListener("change", () => calcDef())
+armorTable.addEventListener("change", () => calcDef())
+
 // LISTENING TO THE EQUIPMENT BUTTONS
 // Weapons
-var weaponTable = document.querySelector("#weapons table")
 var addWeaponBtn = document.querySelector("#weapons .add")
 var deleteWeaponBtn = document.querySelector("#weapons .delete")
 addWeaponBtn.addEventListener("click", () => addTableLine(weaponTable));
 deleteWeaponBtn.addEventListener("click", () => deleteTableLine(weaponTable));
 // Armor
-var armorTable = document.querySelector("#armors table")
 var addArmorBtn = document.querySelector("#armors .add")
 var deleteArmorBtn = document.querySelector("#armors .delete")
 addArmorBtn.addEventListener("click", () => addTableLine(armorTable));

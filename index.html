@@ -192,13 +192,13 @@
                                 <img class="icon" src="images/icon_test.png" alt="">
                                 <span>10</span>
                             </td>
-                            <td>
+                            <td id="defense">
                                 <img class="icon" src="images/icon_test.png" alt="">
-                                blabla
+                                <span>+2</span>
                             </td>
                             <td>
                                 <img class="icon" src="images/icon_test.png" alt="">
-                                blabla
+                                <span>blabla</span>
                             </td>
                         </tr>
                     </tbody>
@@ -298,19 +298,20 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td><input type="text"></td>
+                                <td><input type="checkbox" checked></td>
+                                <td><input type="text" value="Epée longue"></td>
                                 <td>
-                                    <div class="test">
+                                    <div class="test mod">
                                         <img class="icon" src="images/icon_test.png" alt="">
-                                        +1
+                                        +
+                                        <input type="number" min="0" max="12" value="0">
                                     </div>
                                 </td>
                                 <td>
                                     <select name="weaponDM">
                                         <option value="1d4">1d4</option>
                                         <option value="1d6">1d6</option>
-                                        <option value="1d8">1d8</option>
+                                        <option value="1d8" selected="selected">1d8</option>
                                         <option value="1d10">1d10</option>
                                         <option value="1d12">1d12</option>
                                         <option value="2d6">2d6</option>
@@ -318,23 +319,14 @@
                                         <option value="2d10">2d10</option>
                                         <option value="2d12">2d12</option>
                                     </select>
-                                    <select name="weaponBonus">
-                                        <option value="0"></option>
-                                        <option value="1">+1</option>
-                                        <option value="2">+2</option>
-                                        <option value="3">+3</option>
-                                        <option value="4">+4</option>
-                                        <option value="5">+5</option>
-                                        <option value="6">+6</option>
-
-                                    </select>
+                                    +<input type="number" name="DMbonus" min="0" max="12" value>
                                 </td>
                                 <td></td>
                             </tr>
                         </tbody>
                     </table>
                     <input class="add" type="button" value="Ajouter">
-                    <input class="delete" type="button" value="Supprimer équipés">
+                    <input class="delete" type="button" value="Supprimer non équipés">
                 </div>
                 <div id="armors">
                     <table>
@@ -348,15 +340,18 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td><input type="text"></td>
-                                <td>+<input type="number" min="1" max="12" value="1"></td>
-                                <td><input type="number" min="-12" max="0" value="1"></td>
+                                <td><input type="checkbox" checked></td>
+                                <td><input type="text" value="Armure de cuir"></td>
+                                <td>
+                                    <img class="icon" src="images/icon_test.png" alt="">
+                                    +<input class="mod" type="number" min="1" max="12" value="2">
+                                </td>
+                                <td>-<input type="number" min="0" max="12" value="2"></td>
                             </tr>
                         </tbody>
                     </table>
                     <input class="add" type="button" value="Ajouter">
-                    <input class="delete" type="button" value="Supprimer équipés">
+                    <input class="delete" type="button" value="Supprimer non équipés">
                 </div>
 
             </div>
