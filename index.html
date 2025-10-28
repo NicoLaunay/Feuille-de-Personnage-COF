@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- <script type="text/javascript" src="data/races.json"></script> -->
     <script type="module" src="./js/races.js"></script>
+    <script type="module" src="./js/classes.js"></script>
+    <script type="module" src="./js/functions.js"></script>
     <script type="module" src="./js/script.js" defer></script>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <title>Fiche personnage</title>
@@ -63,7 +65,7 @@
                             <option value="sorcerer">Ensorceleur</option>
                             <option value="spellforger">Forgesort</option>
                             <option value="warrior">Guerrier</option>
-                            <option value="wizard">Magicien</option>
+                            <option value="mage">Magicien</option>
                             <option value="monk">Moine</option>
                             <option value="necromancer">Nécromancien</option>
                             <option value="priest">Prêtre</option>
@@ -199,7 +201,7 @@
                                 <img class="icon" src="images/icon_test.png" alt="">
                                 <span>+2</span>
                             </td>
-                            <td>
+                            <td id="life_dice">
                                 <img class="icon" src="images/icon_test.png" alt="">
                                 <span>blabla</span>
                             </td>
@@ -230,7 +232,7 @@
                                 Distance
                             </td>
                             <td class="mod">
-                                +2
+                                +1
                             </td>
                         </tr>
                         <tr id="atk_magic">
@@ -239,7 +241,7 @@
                                 Magique
                             </td>
                             <td class="mod">
-                                +2
+                                +1
                             </td>
                         </tr>
                     </tbody>
