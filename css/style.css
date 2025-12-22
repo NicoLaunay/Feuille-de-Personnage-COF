@@ -49,12 +49,12 @@ input[type="number"] {
     background-color: var(--table-filling-color);
 }
 #life_bar {
-    width: 50%;
+    width: 100%;
     height: 20px;
     background-color: var(--lifebar-color);
 }
 #mana_bar {
-    width: 100%;
+    width: 0%;
     height: 20px;
     background-color: var(--manabar-color);
 }

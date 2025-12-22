@@ -27,12 +27,18 @@
                     <!-- BARRE DE VIE -->
                     <div>
                         <div id="life_bar"></div>
-                        <div id="life_points">6/6</div>
+                        <div id="life_points">
+                            <input type="number" name="life_points" value="7" step="1" min="0" max="7">
+                            <span>/7</span>
+                        </div>
                     </div>
                     <!-- BARRE DE MANA -->
-                     <div>
+                    <div>
                         <div id="mana_bar"></div>
-                        <div id="mana_points">5/5</div>
+                        <div id="mana_points">
+                            <input type="number" name="mana_points" value="0" step="1" min="0" max="0">
+                            <span>/0</span>
+                        </div>
                     </div>
                 </div>
                 <form id="identity">
@@ -45,19 +51,19 @@
                         <!-- RACE Selection -->
                         <label for="race">Race : </label>
                         <select id="race" name="race">
-                            <option value="halfElf">Demi-elfe</option>
+                            <!-- <option value="halfElf">Demi-elfe</option>
                             <option value="halfOrc">Demi-orque</option>
                             <option value="highElf">Elfe, Haut</option>
                             <option value="woodElf">Elfe, Sylvain</option>
                             <option value="gnome">Gnome</option>
                             <option value="halfling">Halfelin</option>
                             <option value="human">Humain</option>
-                            <option value="dwarf">Nain</option>
+                            <option value="dwarf">Nain</option> -->
                         </select>
                         <!-- CLASS Selection -->
                         <label for="class">Profil : </label>
                         <select id="class" name="class">
-                            <option value="arquebusier">Arquebusier</option>
+                            <!-- <option value="arquebusier">Arquebusier</option>
                             <option value="barbarian">Barbare</option>
                             <option value="bard">Barde</option>
                             <option value="knight">Chevalier</option>
@@ -70,7 +76,7 @@
                             <option value="necromancer">Nécromancien</option>
                             <option value="priest">Prêtre</option>
                             <option value="ranger">Rôdeur</option>
-                            <option value="thief">Voleur</option>
+                            <option value="thief">Voleur</option> -->
                         </select>
                     </div>
                     <!-- LEVEL input -->
@@ -203,7 +209,7 @@
                             </td>
                             <td id="life_dice">
                                 <img class="icon" src="images/icon_test.png" alt="">
-                                <span>blabla</span>
+                                <span>d8</span>
                             </td>
                         </tr>
                     </tbody>
@@ -300,7 +306,7 @@
                                 <td>Equip.</td>
                                 <td>type</td>
                                 <td>Arme</td>
-                                <td>Test</td>
+                                <td>Attaque</td>
                                 <td>DM</td>
                                 <td>Special</td>
                             </tr>
@@ -315,7 +321,7 @@
                                         <option value="atk_magic">@</option>
                                     </select>
                                 </td>
-                                <td><input type="text" value="Epée longue"></td>
+                                <td><input id="weaponName" type="text" value="Epée longue"></td>
                                 <td>
                                     <div class="test mod">
                                         <img class="icon" src="images/icon_test.png" alt="">
@@ -324,7 +330,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <select name="weaponDM">
+                                    <select id = "weaponDM">
                                         <option value="1d4">1d4</option>
                                         <option value="1d6">1d6</option>
                                         <option value="1d8" selected="selected">1d8</option>
@@ -335,7 +341,7 @@
                                         <option value="2d10">2d10</option>
                                         <option value="2d12">2d12</option>
                                     </select>
-                                    +<input type="number" name="DMbonus" min="0" max="12" value>
+                                    +<input type="number" id="DMbonus" min="0" max="12" value="0">
                                 </td>
                                 <td></td>
                             </tr>
@@ -359,12 +365,12 @@
                         <tbody>
                             <tr>
                                 <td><input type="checkbox" checked></td>
-                                <td><input type="text" value="Armure de cuir"></td>
+                                <td><input id="armorName" type="text" value="Armure de cuir"></td>
                                 <td>
                                     <img class="icon" src="images/icon_test.png" alt="">
                                     +<input class="mod" type="number" min="1" max="12" value="2">
                                 </td>
-                                <td>-<input type="number" min="0" max="12" value="2"></td>
+                                <td>-<input id="armorMalus" type="number" min="0" max="12" value="2"></td>
                             </tr>
                         </tbody>
                     </table>

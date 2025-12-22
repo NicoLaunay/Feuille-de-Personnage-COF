@@ -19,9 +19,32 @@ import { CLASSES } from "./classes.js"
 //         });
 // }
 
+// export function jsonRead(filePath) {
+//     var f = File.new()
+//     f.open(filePath, File.READ)
+//     var json = JSON.parse(f.get_as_text())
+//     f.close()
+//     var data = json.result
+//     return data
+// }
+
+// export function jsonWrite(filePath, data) {
+//     f = File.new()
+//     f.open(filePath, File.WRITE)
+//     f.store_string(JSON.print(data, "  ", true))
+//     f.close()
+// }
+
+// var test = {"nom": "nico",
+//             "age": 34
+// }
+
+// jsonWrite("test.json", test)
+
+
 export function calcModCharac(charac) {
 // Updates the specified CHARAC modifier
-    var inputRace = document.getElementById("race")
+    let inputRace = document.getElementById("race")
     let points = document.querySelector(`#${charac} input`).value
     let valueElmt = document.querySelector(`#${charac} .val`)
     let modElmt = document.querySelector(`#${charac} .mod`)
@@ -77,19 +100,20 @@ export function calcAtk(atkType1, atkType2=false, atkType3=false) {
                 var modCharac = Number(document.querySelector("#INTELLIGENCE .mod").innerHTML)
             }
 
-            var weaponMod = 0
-            let weaponTbody = document.querySelector("#weapons tbody")
+            // var weaponMod = 0
+            // let weaponTbody = document.querySelector("#weapons tbody")
 
-            for (let row of weaponTbody.rows) {
-                let isChecked = row.querySelector("tr td:first-child input").checked
-                let weaponType = document.getElementById("weaponType").value
-                if (isChecked && weaponType==atkType) {
-                    weaponMod = weaponMod + Number(row.querySelector(".mod input").value)
-                    // console.log(weaponMod)
-                }
-            }
-            let atkMod = Number(level) + Number(weaponMod) + Number(modCharac)
-            document.querySelector(`#${atkType} .mod`).innerHTML = (atkMod > 0) ? `+${atkMod}` : atkMod
+            // for (let row of weaponTbody.rows) {
+            //     let isChecked = row.querySelector("tr td:first-child input").checked
+            //     let weaponType = document.getElementById("weaponType").value
+            //     if (isChecked && weaponType==atkType) {
+            //         weaponMod = weaponMod + Number(row.querySelector(".mod input").value)
+            //         // console.log(weaponMod)
+            //     }
+            // }
+            // let atkMod = Number(level) + Number(weaponMod) + Number(modCharac)
+            let atkMod = Number(level) + Number(modCharac)
+            document.querySelector(`#${atkType} .mod`).innerHTML = (atkMod > 0) ? `+${atkMod}` : atkMod //Adding a + sign if atkmod > 0
         }
     }
     
@@ -137,6 +161,115 @@ export function setRace(raceMap, ageElmt, heightElmt, weightElmt, capacityElmt, 
     }
 }
 
+export function updateMaxHP(lifeDiceElmt, hpElmt, conModElmt, levelElmt, lifeBarElmt) {
+    var lifeDice = lifeDiceElmt.querySelector("span").innerHTML
+    var lifeDiceValue = Number(lifeDice.slice(1))
+    var level = Number(levelElmt.value)
+    var conMod = Number(conModElmt.innerHTML)
+    var maxHP = lifeDiceValue + conMod + ((level - 1) * (lifeDiceValue/2 + conMod))
+
+    var hpMaxElmt = hpElmt.querySelector("span")
+    var hpCurrentElmt = hpElmt.querySelector("input")
+    hpMaxElmt.innerHTML = `/${maxHP}`
+    hpCurrentElmt.max = maxHP
+    if (hpCurrentElmt.value > maxHP) {
+        hpCurrentElmt.value = maxHP
+    }
+    updateLifeBar(lifeBarElmt, hpElmt)
+}
+
+export function updateLifeBar(lifeBarElmt, hpElmt) {
+    var currentHP = Number(hpElmt.querySelector("input").value)
+    var maxHP = Number(hpElmt.querySelector("input").max)
+    if (maxHP == 0) {
+        var percentHP = 0
+    } else {
+        var percentHP = currentHP/maxHP * 100
+    }
+    lifeBarElmt.style.width = `${percentHP}%`
+}
+
+export function setClass(classMap, lifeDiceElmt, weaponsTable, armorsTable, inventoryElmt) {
+// Updates various parameters whenever Class changes
+    // Life Dice
+    var lifeDice = classMap.get("life_dice")
+    lifeDiceElmt.querySelector("span").innerHTML = lifeDice
+
+    // WEAPONS
+    let tbody_w = weaponsTable.querySelector("tbody")
+    let nb_weapons = classMap.get("start_weapons").length
+    let nb_rows_w = tbody_w.rows.length
+    let weapons_to_add = nb_weapons - nb_rows_w
+    // Adding or deleting lines to get the number of weapons required by the class
+    if (weapons_to_add > 0) {
+        for (let step = 0; step < weapons_to_add; step++) {
+            addTableLine(weaponsTable)
+        }
+    } else if (weapons_to_add < 0) {
+        for (let step = nb_rows_w-1; step >= nb_weapons; step--) {
+            tbody_w.rows.item(step).remove()
+        }
+    }
+    // Filling the table with the starter weapons info
+    for (let step = 0; step < nb_weapons; step++) {
+        let rowElmt = tbody_w.querySelector(`tr:nth-child(${step+1})`)
+        let weapon = classMap.get("start_weapons")[step]
+        setWeaponRow(weapon, rowElmt)
+    }
+
+    // ARMOR
+    let tbody_a = armorsTable.querySelector("tbody")
+    let nb_armors = classMap.get("start_armors").length
+    let nb_rows_a = tbody_a.rows.length
+    let armors_to_add = nb_armors - nb_rows_a
+    // Adding or deleting lines to get the number of armor pieces required by the class
+    if (armors_to_add > 0) {
+        for (let step = 0; step < armors_to_add; step++) {
+            addTableLine(armorsTable)
+        }
+    } else if (armors_to_add < 0) {
+        for (let step = nb_rows_a-1; step >= nb_armors; step--) {
+            tbody_a.rows.item(step).remove()
+        }
+    }
+    // Filling the table with the starter armor pieces info
+    for (let step = 0; step < nb_armors; step++) {
+        let rowElmt = tbody_a.querySelector(`tr:nth-child(${step+1})`)
+        let armor = classMap.get("start_armors")[step]
+        setArmorRow(armor, rowElmt)
+    }
+
+    // INVENTORY
+    let contentList = classMap.get("inventory")
+    setInventory(inventoryElmt, contentList)
+}
+
+
+export function setWeaponRow(weaponMap, tableRowElmt) {
+    tableRowElmt.querySelector("#weaponType").value = weaponMap.get("type")
+    tableRowElmt.querySelector("#weaponName").value = weaponMap.get("name")
+    tableRowElmt.querySelector(".mod input").value = weaponMap.get("atk_mod")
+    tableRowElmt.querySelector("#weaponDM").value = weaponMap.get("DM_dice")
+    tableRowElmt.querySelector("#DMbonus").value = weaponMap.get("DM_mod")
+}
+
+
+export function setArmorRow(armorMap, tableRowElmt) {
+    tableRowElmt.querySelector("#armorName").value = armorMap.get("name")
+    tableRowElmt.querySelector(".mod").value = armorMap.get("def_mod")
+    tableRowElmt.querySelector("#armorMalus").value = armorMap.get("def_mod")
+}
+
+
+export function setInventory(inventoryElmt, contentList) {
+    inventoryElmt.innerHTML = ""
+    let content = ""
+    for (let item of contentList) {
+        content = `${content}${item}\r`
+    }
+    inventoryElmt.innerHTML = content
+}
+
 
 export function addTableLine(tableElmt) {
 // Adds a line at the end of a Table (duplicates last line)
@@ -159,6 +292,13 @@ export function deleteTableLine(tableElmt) {
     }
 }
 
-// export function test() {
-//     console.log("Working")
-// }
+
+export function setOptions(selectElmt, optionsMap) {
+// Adds an option for each entry in the options Map.
+    for (let [key, content] of optionsMap) {
+        let option = document.createElement("option");
+        option.value = key
+        option.text = content.get("name")
+        selectElmt.add(option)
+    }
+}

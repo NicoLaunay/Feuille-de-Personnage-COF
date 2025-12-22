@@ -1,5 +1,6 @@
 export const RACES = new Map([
   ["halfElf", new Map([
+    ["name", "Demi-Elfe"],
     ["str", 0], ["dex", 0], ["con", -2], ["int", 0], ["wis", 2], ["cha", 0], 
     ["ageMin", 20], ["ageMax", 150],
     ["heightMin", 1.50], ["heightMax", 1.90],
@@ -12,6 +13,7 @@ export const RACES = new Map([
                             Pour un elfe, l'obscurité de la nuit sous la lumière des étoiles n'est que de la pénombre,
                             où seuls les petits détails lui échappent`]])],
   ["halfOrc", new Map([
+    ["name", "Demi-Orque"],
     ["str", 2], ["dex", 0], ["con", 0], ["int", -2], ["wis", 0], ["cha", -2], 
     ["ageMin", 15], ["ageMax", 60],
     ["heightMin", 1.70], ["heightMax", 2.10],
@@ -19,6 +21,7 @@ export const RACES = new Map([
     ["skillName", "Vision dans le noir"],
     ["skillDescription", `Dans le noir total, le Demi-orque voit comme dans la pénombre jusqu’à 30 m.`]])],
   ["highElf", new Map([
+    ["name", "Haut Elfe"],
     ["str", -2], ["dex", 0], ["con", 0], ["int", 0], ["wis", 0], ["cha", 2], 
     ["ageMin", 80], ["ageMax", 450],
     ["heightMin", 1.50], ["heightMax", 1.80],
@@ -27,6 +30,7 @@ export const RACES = new Map([
     ["skillDescription", `Pour un Haut-elfe, l’obscurité de la nuit sous la lumière des étoiles \
                             n’est que de la pénombre, où seuls les petits détails lui échappent.`]])],
   ["woodElf", new Map([
+    ["name", "Elfe Sylvain"],
     ["str", -2], ["dex", 2], ["con", 0], ["int", 0], ["wis", 0], ["cha", 0], 
     ["ageMin", 50], ["ageMax", 350],
     ["heightMin", 1.40], ["heightMax", 1.70],
@@ -35,6 +39,7 @@ export const RACES = new Map([
     ["skillDescription", `Pour un Elfe sylvain, l’obscurité de la nuit sous la lumière des étoiles \
                             n’est que de la pénombre, où seuls les petits détails lui échappent.`]])],
   ["gnome", new Map([
+    ["name", "Gnome"],
     ["str", -2], ["dex", 0], ["con", 0], ["int", 2], ["wis", 0], ["cha", 0], 
     ["ageMin", 40], ["ageMax", 250],
     ["heightMin", 1.0], ["heightMax", 1.20],
@@ -46,6 +51,7 @@ export const RACES = new Map([
                             Soit il choisit une capacité de rang 1 d’Ensorceleur. Il peut utiliser ce sort sans pénalité avec 
                             une armure allant jusqu’à la chemise de maille.`]])],
   ["halfling", new Map([
+    ["name", "Halfelin"],
     ["str", -2], ["dex", 2], ["con", 0], ["int", 0], ["wis", 0], ["cha", 0], 
     ["ageMin", 20], ["ageMax", 150],
     ["heightMin", 0.8], ["heightMax", 1],
@@ -56,6 +62,7 @@ export const RACES = new Map([
                             (épée courte, masse, etc.). Il lui faut utiliser les 2 mains pour les armes qui infligent 1d8 à 1d10 
                             de DM (épée longue). Enfin il lui est interdit d’utiliser les armes qui infligent plus de 1d10 DM.`]])],
   ["human", new Map([
+    ["name", "Humain"],
     ["str", 0], ["dex", 0], ["con", 0], ["int", 0], ["wis", 0], ["cha", 0], 
     ["ageMin", 18], ["ageMax", 100],
     ["heightMin", 1.50], ["heightMax", 2.00],
@@ -64,6 +71,7 @@ export const RACES = new Map([
     ["skillDescription", `Lorsqu’une attaque devrait amener le personnage à 0 PV, les DM qu’elle inflige sont divisés par 2 
                             (minimum 1).`]])],
   ["dwarf", new Map([
+    ["name", "Nain"],
     ["str", 0], ["dex", -2], ["con", 2], ["int", 0], ["wis", 0], ["cha", 0], 
     ["ageMin", 40], ["ageMax", 250],
     ["heightMin", 1.15], ["heightMax", 1.35],

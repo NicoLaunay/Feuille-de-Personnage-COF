@@ -2,14 +2,29 @@ import { RACES } from "./races.js"
 import { CLASSES } from "./classes.js"
 import * as rpg from "./functions.js"
 
+const USER_ID = "nicotest"
+
+// LISTENING TO CHANGES IN HP/MP
+var lifeBarElmt = document.getElementById("life_bar")
+var hpElmt = document.getElementById("life_points")
+hpElmt.addEventListener("change", () => {
+    rpg.updateLifeBar(lifeBarElmt, hpElmt)
+})
+
+// SETTING OPTION LISTS (RACES AND CLASSES)
+var inputRace = document.getElementById("race") 
+var inputClass = document.getElementById("class")
+rpg.setOptions(inputRace, RACES)
+rpg.setOptions(inputClass, CLASSES)
+
 // LISTENING TO CHANGES IN LEVEL
 var levelElmt = document.getElementById("level")
 levelElmt.addEventListener("change", () => {
     rpg.calcAtk("atk_melee", "atk_range", "atk_magic")
+    rpg.updateMaxHP(lifeDiceElmt, hpElmt, conModElmt, levelElmt, lifeBarElmt)
 })
 
 //LISTENING TO CHANGES IN RACE
-var inputRace = document.getElementById("race")
 var ageElmt = document.getElementById("age")
 var heightElmt = document.getElementById("height")
 var weightElmt = document.getElementById("weight")
@@ -18,6 +33,18 @@ var characElmt = document.getElementById("characteristics")
 inputRace.addEventListener("change", () => {
     var raceMap = RACES.get(inputRace.value)
     rpg.setRace(raceMap, ageElmt, heightElmt, weightElmt, capacityElmt, characElmt)
+})
+
+//LISTENING TO CHANGES IN CLASS
+var weaponsTable = document.getElementById("weapons")
+var armorsTable = document.getElementById("armors")
+var lifeDiceElmt = document.getElementById("life_dice")
+var inventoryElmt = document.getElementById("inventory")
+var conModElmt = document.querySelector("#CONSTITUTION .mod")
+inputClass.addEventListener("change", () => {
+    var classMap = CLASSES.get(inputClass.value)
+    rpg.setClass(classMap, lifeDiceElmt, weaponsTable, armorsTable, inventoryElmt)
+    rpg.updateMaxHP(lifeDiceElmt, hpElmt, conModElmt, levelElmt, lifeBarElmt)
 })
 
 //LISTENING TO THE CHANGES IN CHARACTERISTICS
@@ -29,7 +56,11 @@ var dexterityPts = document.querySelector("#DEXTERITY input")
 dexterityPts.addEventListener("change", () => rpg.calcModCharac("DEXTERITY"));
 // CONSTITUTION
 var constitutionPts = document.querySelector("#CONSTITUTION input")
-constitutionPts.addEventListener("change", () => rpg.calcModCharac("CONSTITUTION"));
+constitutionPts.addEventListener("change", () => {
+    rpg.calcModCharac("CONSTITUTION")
+    rpg.updateMaxHP(lifeDiceElmt, hpElmt, conModElmt, levelElmt, lifeBarElmt)
+});
+    
 // INTELLIGENCE
 var intelligencePts = document.querySelector("#INTELLIGENCE input")
 intelligencePts.addEventListener("change", () => rpg.calcModCharac("INTELLIGENCE"));
